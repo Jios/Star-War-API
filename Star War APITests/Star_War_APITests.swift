@@ -1,10 +1,3 @@
-//
-//  Star_War_APITests.swift
-//  Star War APITests
-//
-//  Created by jianhong li on 1/23/21.
-//
-
 import XCTest
 @testable import Star_War_API
 

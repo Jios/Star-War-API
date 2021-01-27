@@ -1,10 +1,3 @@
-//
-//  Star_War_APIUITests.swift
-//  Star War APIUITests
-//
-//  Created by jianhong li on 1/23/21.
-//
-
 import XCTest
 
 class Star_War_APIUITests: XCTestCase {

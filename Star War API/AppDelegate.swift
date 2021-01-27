@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Star War API
-//
-//  Created by jianhong li on 1/23/21.
-//
-
 import UIKit
 
 @main
