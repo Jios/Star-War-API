@@ -110,6 +110,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		910E609825C1DD130096D841 /* VIew Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				911EFCE625BCC90E009A4BC0 /* MasterViewController.swift */,
+				911EFD4725BE3ED8009A4BC0 /* DetailTableViewController.swift */,
+				911EFD3225BE2839009A4BC0 /* SpinnerViewController.swift */,
+			);
+			path = "VIew Controllers";
+			sourceTree = "<group>";
+		};
 		911EFCD625BCC90E009A4BC0 = {
 			isa = PBXGroup;
 			children = (
@@ -138,11 +148,9 @@
 				911EFD1E25BCCAF6009A4BC0 /* Network */,
 				911EFD1525BCC977009A4BC0 /* Data Models */,
 				91D1F38325C1526900281890 /* View Models */,
+				910E609825C1DD130096D841 /* VIew Controllers */,
 				911EFCE225BCC90E009A4BC0 /* AppDelegate.swift */,
 				911EFCE425BCC90E009A4BC0 /* SceneDelegate.swift */,
-				911EFCE625BCC90E009A4BC0 /* MasterViewController.swift */,
-				911EFD4725BE3ED8009A4BC0 /* DetailTableViewController.swift */,
-				911EFD3225BE2839009A4BC0 /* SpinnerViewController.swift */,
 				911EFCE825BCC90E009A4BC0 /* Main.storyboard */,
 				911EFCEB25BCC910009A4BC0 /* Assets.xcassets */,
 				911EFCED25BCC910009A4BC0 /* LaunchScreen.storyboard */,
