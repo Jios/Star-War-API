@@ -6,9 +6,10 @@ class SpinnerViewController: UIViewController
 {
     var spinner = UIActivityIndicatorView(style: .large)
     
-    
-    override func loadView()
+    override func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
+        
         view = UIView()
         view.backgroundColor = UIColor(white: 0,
                                        alpha: 0.3)

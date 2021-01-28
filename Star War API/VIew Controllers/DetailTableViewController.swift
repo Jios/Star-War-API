@@ -34,10 +34,7 @@ class DetailTableViewController: UITableViewController
         
         setupSubviews()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            
-            self.fetchData(self.viewModel.model)
-        }
+        self.fetchData(self.viewModel.model)
     }
 }
 
