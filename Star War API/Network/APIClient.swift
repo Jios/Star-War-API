@@ -18,8 +18,6 @@ struct APIClient
     func fetchResouce<T: Codable>(_ url: URL,
                                   completion: @escaping (Result<T, NSError>) -> Void)
     {
-        print("[url] : \(url.absoluteString)")
-        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -50,26 +48,6 @@ struct APIClient
 
 extension APIClient
 {
-    static
-    func fetchPeople(_ urlString: String,
-                     completion: @escaping (Result<SearchResult<People>, NSError>) -> Void)
-    {
-        guard let url = URL(string: urlString) else {
-            
-            let userInfo = ["message": "Invalid URL"]
-            let error = NSError(domain: "SWAPI",
-                                code: -1,
-                                userInfo: userInfo)
-            
-            completion(Result.failure(error))
-            
-            return
-        }
-        
-        fetchResouce(url,
-                     completion: completion)
-    }
-    
     static
     func fetchResources<T: Codable>(_ urlStrings: [String],
                                     completion: @escaping (Result<[T], NSError>) -> Void)
