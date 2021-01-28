@@ -25,7 +25,8 @@ struct People: Codable, DataModelProtocol
 extension People
 {
     var displayResouces: [(String, String?)] {
-        return [("Gender", gender),
+        return [("Name", name),
+                ("Gender", gender),
                 ("Height", height)]
     }
     var characters: [String] { return [] }

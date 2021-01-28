@@ -23,7 +23,7 @@ struct DetailViewModel
     }
     
     var title: String {
-        return model.name
+        return model.viewTitle
     }
     
     var numberOfSections: Int {

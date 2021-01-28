@@ -21,7 +21,8 @@ struct Species: Codable, DataModelProtocol
     let edited: Date
     
     var displayResouces: [(String, String?)] {
-        return [("Classification", classification),
+        return [("Name", name),
+                ("Classification", classification),
                 ("Designation", designation)]
     }
     

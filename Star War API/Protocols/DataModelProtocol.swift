@@ -5,6 +5,7 @@ import Foundation
 protocol DataModelProtocol
 {
     var url: String { get }
+    var viewTitle: String { get }
     var name: String { get }
     
     // basic info section
@@ -29,6 +30,12 @@ protocol DataModelProtocol
 
 extension DataModelProtocol
 {
+    var viewTitle: String {
+        let thisType = type(of: self)
+        let name = String(describing: thisType)
+        
+        return name
+    }
 //    var createdDateString: String? { return created?.string }
     var editedDateString: String?  { return edited.string  }
 }

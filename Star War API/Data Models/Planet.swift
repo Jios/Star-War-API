@@ -20,7 +20,8 @@ struct Planet: Codable, DataModelProtocol
     let edited: Date
     
     var displayResouces: [(String, String?)] {
-        return [("Diameter", diameter),
+        return [("Name", name),
+                ("Diameter", diameter),
                 ("Rotation Period", rotationPeriod)]
     }
     

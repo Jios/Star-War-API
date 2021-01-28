@@ -25,7 +25,8 @@ struct Film: Codable, DataModelProtocol
     }
     
     var displayResouces: [(String, String?)] {
-        return [("Director", director),
+        return [("Name", name),
+                ("Director", director),
                 ("Producer", producer)]
     }
     

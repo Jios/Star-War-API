@@ -24,7 +24,8 @@ struct Starship: Codable, DataModelProtocol
     let edited: Date
     
     var displayResouces: [(String, String?)] {
-        return [("Starship Class", starshipClass),
+        return [("Name", name),
+                ("Starship Class", starshipClass),
                 ("Manufacturer", manufacturer)]
     }
     

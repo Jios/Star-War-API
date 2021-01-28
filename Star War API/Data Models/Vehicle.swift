@@ -22,7 +22,8 @@ struct Vehicle: Codable, DataModelProtocol
     let edited: Date
     
     var displayResouces: [(String, String?)] {
-        return [("Vehicle Class", vehicleClass),
+        return [("Name", name),
+                ("Vehicle Class", vehicleClass),
                 ("Manufacturer", manufacturer)]
     }
     var created: Date? { return nil }

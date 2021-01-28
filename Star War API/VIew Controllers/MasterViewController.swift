@@ -81,8 +81,6 @@ extension MasterViewController
         
         
         APIClient.fetchResouce(url) { [weak self] (result: Result<SearchResult<People>, NSError>) in
-//        }
-//        APIClient.fetchPeople(viewModel.urlString) { [weak self] (result: Result<SearchResult<People>, NSError>) in
             
             guard let self = self else {
                 return
