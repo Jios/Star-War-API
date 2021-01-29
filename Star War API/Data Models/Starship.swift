@@ -4,6 +4,7 @@ import Foundation
 
 struct Starship: Codable, DataModelProtocol
 {
+    // change to optional
     let name: String
     let model: String
     let starshipClass: String

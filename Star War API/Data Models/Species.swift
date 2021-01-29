@@ -4,6 +4,7 @@ import Foundation
 
 struct Species: Codable, DataModelProtocol
 {
+    // change to optional
     let name: String
     let classification: String
     let designation: String

@@ -4,6 +4,7 @@ import Foundation
 
 struct Vehicle: Codable, DataModelProtocol
 {
+    // change to optional
     let name: String
     let model: String
     let vehicleClass: String

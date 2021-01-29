@@ -37,7 +37,9 @@ extension UIViewController
                                       style: UIAlertAction.Style.default,
                                       handler: nil))
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            
+            guard let self = self else {return}
             
             self.present(alert,
                          animated: true,

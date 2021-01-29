@@ -20,6 +20,7 @@ protocol DataModelProtocol
     var planets: [String] { get }
     
     // dates
+    // to optional
     var edited: Date { get }
     var editedDateString: String? { get }
     

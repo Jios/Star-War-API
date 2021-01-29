@@ -4,9 +4,10 @@ import Foundation
 
 struct People: Codable, DataModelProtocol
 {
+    // change to optional
     let name: String
     let gender: String
-    let height: String
+    let height: String // it will cause crash for unexpected data
     let mass: String
     let homeworld: String
     let films: [String]

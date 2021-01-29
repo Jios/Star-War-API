@@ -4,6 +4,7 @@ import Foundation
 
 struct Planet: Codable, DataModelProtocol
 {
+    // change to optional
     let name: String
     let diameter: String
     let rotationPeriod: String
