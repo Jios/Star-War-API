@@ -32,7 +32,24 @@ struct APIClient
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                    
+                    decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
+                        let container = try decoder.singleValueContainer()
+                        let dateString = try container.decode(String.self)
+                        
+                        if let date = DateFormatter.iso8601Full.date(from: dateString)
+                        {
+                            // .iso8601 with milliseconds
+                            return date
+                        }
+                        else if let date = ISO8601DateFormatter().date(from: dateString)
+                        {
+                            return date
+                        }
+                        
+                        throw DecodingError.dataCorruptedError(in: container,
+                            debugDescription: "Cannot decode date string \(dateString)")
+                    })
                     
                     let response = try decoder.decode(T.self, from: data)
                     completion(Result.success(response))

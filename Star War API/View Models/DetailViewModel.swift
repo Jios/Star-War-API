@@ -35,7 +35,7 @@ struct DetailViewModel
         return sections[section].rows.count
     }
     
-    func sectionTitle(at section: Int) -> String
+    func sectionTitle(at section: Int) -> String?
     {
         return sections[section].title
     }
@@ -43,5 +43,33 @@ struct DetailViewModel
     func rowData(at indexPath: IndexPath) -> RowData
     {
         return sections[indexPath.section].rows[indexPath.row]
+    }
+}
+
+
+extension DetailViewModel
+{
+    func fetchFilms(_ urlStrings: [String],
+                    group: DispatchGroup,
+                    completion: @escaping (Result<SectionDataSource, NSError>) -> Void)
+    {
+        group.enter()
+        
+        APIClient.fetchResources(urlStrings,
+                                 completion: { (result: Result<[Film], NSError>) in
+                                    
+                                    switch result {
+                                    case .success(let models):
+                                        let section = SectionDataSource.section(models,
+                                                                                title: "Species")
+
+                                        completion(Result.success(section))
+
+                                    case .failure(let error):
+                                        completion(Result.failure(error))
+                                    }
+                                    
+                                    group.leave()
+                                 })
     }
 }

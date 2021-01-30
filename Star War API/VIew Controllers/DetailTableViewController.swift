@@ -58,10 +58,15 @@ extension DetailTableViewController
 fileprivate
 extension DetailTableViewController
 {
-    func fetch<T: Codable>(_ urlStrings: [String],
+    func fetch<T: Codable>(_ urlStrings: [String]?,
                            type: T.Type,
                            completion: @escaping ([T]) -> Void)
     {
+        guard let urlStrings = urlStrings else {
+            completion([])
+            return
+        }
+        
         APIClient.fetchResources(urlStrings,
                                  completion: { (result: Result<[T], NSError>) in
                                     
@@ -154,8 +159,8 @@ extension DetailTableViewController
         
         group.notify(queue: .global()) {
             
-            sections = sections.filter { !$0.rows.isEmpty }
-            sections.sort(by: { $0.title < $1.title})
+            sections = sections.filter { !$0.rows.isEmpty || $0.title == nil }
+            sections.sort(by: { $0.title! < $1.title!})
             
             self.viewModel.sections.append(contentsOf: sections)
             

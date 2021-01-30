@@ -4,7 +4,7 @@ import Foundation
 
 struct SectionDataSource
 {
-    var title: String
+    var title: String?
     var rows: [RowData] = []
     
     static func section(_ models: [DataModelProtocol],
