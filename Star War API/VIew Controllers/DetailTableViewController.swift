@@ -34,7 +34,7 @@ class DetailTableViewController: UITableViewController
         
         setupSubviews()
         
-        self.fetchData(self.viewModel.model)
+        fetchData(viewModel.model)
     }
 }
 
@@ -52,16 +52,17 @@ extension DetailTableViewController
     }
 }
 
-// MARK: - #
+
+// MARK: - # api
 
 fileprivate
 extension DetailTableViewController
 {
-    func fetch<T: Codable>(_ urlString: [String],
+    func fetch<T: Codable>(_ urlStrings: [String],
                            type: T.Type,
                            completion: @escaping ([T]) -> Void)
     {
-        APIClient.fetchResources(urlString,
+        APIClient.fetchResources(urlStrings,
                                  completion: { (result: Result<[T], NSError>) in
                                     
                                     switch result {
@@ -83,98 +84,86 @@ extension DetailTableViewController
         let group = DispatchGroup()
         
         
-        if !model.films.isEmpty
-        {
-            group.enter()
+        group.enter()
+        
+        fetch(model.films,
+              type: Film.self) { (models) in
             
-            fetch(model.films,
-                  type: Film.self) { (models) in
-                
-                let section = SectionDataSource.section(models, title: "Films")
-                sections.append(section)
-                
-                group.leave()
-            }
+            let section = SectionDataSource.section(models, title: "Films")
+            sections.append(section)
+            
+            group.leave()
         }
         
-        if !model.species.isEmpty
-        {
-            group.enter()
+        group.enter()
+        
+        fetch(model.species,
+              type: Species.self) { (models) in
             
-            fetch(model.species,
-                  type: Species.self) { (models) in
-                
-                let section = SectionDataSource.section(models, title: "Species")
-                sections.append(section)
-                
-                group.leave()
-            }
+            let section = SectionDataSource.section(models, title: "Species")
+            sections.append(section)
+            
+            group.leave()
         }
         
-        if !model.starships.isEmpty
-        {
-            group.enter()
+        group.enter()
+        
+        fetch(model.starships,
+              type: Starship.self) { (models) in
             
-            fetch(model.starships,
-                  type: Starship.self) { (models) in
-                
-                let section = SectionDataSource.section(models, title: "Starships")
-                sections.append(section)
-                
-                group.leave()
-            }
+            let section = SectionDataSource.section(models, title: "Starships")
+            sections.append(section)
+            
+            group.leave()
         }
         
-        if !model.vehicles.isEmpty
-        {
-            group.enter()
+        group.enter()
+        
+        fetch(model.vehicles,
+              type: Vehicle.self) { (models) in
             
-            fetch(model.vehicles,
-                  type: Vehicle.self) { (models) in
-                
-                let section = SectionDataSource.section(models, title: "Vehicles")
-                sections.append(section)
-                
-                group.leave()
-            }
+            let section = SectionDataSource.section(models, title: "Vehicles")
+            sections.append(section)
+            
+            group.leave()
         }
         
-        if !model.characters.isEmpty
-        {
-            group.enter()
+        group.enter()
+        
+        fetch(model.characters,
+              type: People.self) { (models) in
             
-            fetch(model.characters,
-                  type: People.self) { (models) in
-                
-                let section = SectionDataSource.section(models, title: "Character")
-                sections.append(section)
-                
-                group.leave()
-            }
+            let section = SectionDataSource.section(models, title: "Character")
+            sections.append(section)
+            
+            group.leave()
         }
         
-        if !model.planets.isEmpty
-        {
-            group.enter()
+        group.enter()
+        
+        fetch(model.planets,
+              type: Planet.self) { (models) in
             
-            fetch(model.planets,
-                  type: Planet.self) { (models) in
-                
-                let section = SectionDataSource.section(models, title: "Planets")
-                sections.append(section)
-                
-                group.leave()
-            }
+            let section = SectionDataSource.section(models, title: "Planets")
+            sections.append(section)
+            
+            group.leave()
         }
         
         
-        group.notify(queue: .main) {
-
-            self.hideSpinnerViewController(self.spinnerVC)
+        
+        group.notify(queue: .global()) {
             
+            sections = sections.filter { !$0.rows.isEmpty }
             sections.sort(by: { $0.title < $1.title})
+            
             self.viewModel.sections.append(contentsOf: sections)
-            self.tableView.reloadData()
+            
+            DispatchQueue.main.async {
+                
+                self.hideSpinnerViewController(self.spinnerVC)
+                self.tableView.reloadData()
+            }
         }
     }
 }

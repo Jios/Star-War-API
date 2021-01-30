@@ -46,6 +46,8 @@ extension MasterViewController
 }
 
 
+// MARK: - # api
+
 fileprivate
 extension MasterViewController
 {
@@ -54,12 +56,7 @@ extension MasterViewController
     {
         guard let url = URL(string: viewModel.urlString) else {
             
-//            let userInfo = ["message": "Invalid URL"]
-//            let error = NSError(domain: "SWAPI",
-//                                code: -1,
-//                                userInfo: userInfo)
-//
-//            completion(Result.failure(error))
+            self.showAlertView("Invalid URL")
             
             return
         }
