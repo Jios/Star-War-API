@@ -7,8 +7,24 @@ extension UIViewController
     func showSpinnerViewController(_ spinnerVC: SpinnerViewController)
     {
         addChild(spinnerVC)
-        spinnerVC.view.frame = view.frame
         view.addSubview(spinnerVC.view)
+        
+        if view.frame == .zero
+        {
+            spinnerVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            spinnerVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            
+            spinnerVC.view.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            spinnerVC.view.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        }
+        else
+        {
+            spinnerVC.view.frame = view.frame
+            spinnerVC.view.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        view.isUserInteractionEnabled = false
+        
         spinnerVC.didMove(toParent: self)
     }
     
@@ -16,6 +32,8 @@ extension UIViewController
     {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3,
                                       execute: {
+                                        
+                                        self.view.isUserInteractionEnabled = true
                                         
                                         spinnerVC.willMove(toParent: nil)
                                         spinnerVC.view.removeFromSuperview()
