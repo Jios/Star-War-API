@@ -6,8 +6,6 @@ struct MasterViewModel
 {
     private var nextUrlString: String?
     
-    var shouldReloadDataClosure: (() -> Void)?
-    
     var characters: [People] = []
     var isFetching = false
     
@@ -29,8 +27,6 @@ struct MasterViewModel
             }
             
             nextUrlString = response?.next
-            
-            shouldReloadDataClosure?()
         }
     }
 }

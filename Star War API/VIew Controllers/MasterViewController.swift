@@ -14,18 +14,7 @@ class MasterViewController: UIViewController
     @IBOutlet weak var tableView: UITableView!
     
     
-    lazy var viewModel: MasterViewModel = {
-        var vm = MasterViewModel()
-        
-        vm.shouldReloadDataClosure = {
-            DispatchQueue.main.async {
-                
-                self.tableView.reloadData()
-            }
-        }
-        
-        return vm
-    }()
+    var viewModel = MasterViewModel()
     
     
     override func viewDidLoad()
@@ -93,6 +82,11 @@ extension MasterViewController
             case .success(let searchResult):
                 
                 self.viewModel.response = searchResult
+                
+                DispatchQueue.main.async {
+                    
+                    self.tableView.reloadData()
+                }
                 
             case .failure(let error):
                 self.showAlertView(error.description)
