@@ -62,8 +62,9 @@ extension DetailTableViewController
                            completion: @escaping ([T]) -> Void)
     {
         APIClient.fetchResources(urlString,
-                                 completion: { (result: Result<[T], NSError>) in
+                                 completion: {[weak self] (result: Result<[T], NSError>) in
                                     
+                                    guard let self = self else {return}
                                     switch result {
                                     case .success(let models):
                                         completion(models)
@@ -81,8 +82,9 @@ extension DetailTableViewController
         var sections: [SectionDataSource] = []
         
         let group = DispatchGroup()
+
         
-        
+        //here group used to fetch several urls, do you want to use paralled, otherwise, it is one by one in the same group
         if !model.films.isEmpty
         {
             group.enter()

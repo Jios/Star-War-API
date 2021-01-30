@@ -12,6 +12,7 @@ struct SearchResult<T: Codable>: Codable
 
 struct APIClient
 {
+    //remove static
     static let root = "https://swapi.dev/"
     
     static
@@ -55,7 +56,7 @@ extension APIClient
         var arr: [T] = []
         var error: NSError?
         
-        let group = DispatchGroup()
+        
         
         for urlString in urlStrings
         {
@@ -63,7 +64,7 @@ extension APIClient
                 // TODO: handle invalid URL's
                 continue
             }
-            
+            let group = DispatchGroup()
             group.enter()
             
             fetchResouce(url) { (resp: Result<T, NSError>) in
@@ -77,17 +78,17 @@ extension APIClient
                 }
                 
                 group.leave()
-            }
-        }
-        
-        group.notify(queue: .main) {
-            if let error = error
-            {
-                completion(Result.failure(error))
-            }
-            else
-            {
-                completion(Result.success(arr))
+                
+                group.notify(queue: .main) {
+                    if let error = error
+                    {
+                        completion(Result.failure(error))
+                    }
+                    else
+                    {
+                        completion(Result.success(arr))
+                    }
+                }
             }
         }
     }

@@ -9,6 +9,7 @@ class MasterViewController: UIViewController
     
     private var spinnerVC = SpinnerViewController()
     
+    //why do you story storyboard?
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -18,8 +19,9 @@ class MasterViewController: UIViewController
         var vm = MasterViewModel()
         
         vm.shouldReloadDataClosure = {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 
+                guard let self = self else {return}
                 self.tableView.reloadData()
             }
         }

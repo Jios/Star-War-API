@@ -4,6 +4,7 @@ import Foundation
 
 struct Film: Codable, DataModelProtocol
 {
+    // change to optional
     let title: String
     let episodeId: Int
     let openingCrawl: String
