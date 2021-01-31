@@ -2,14 +2,6 @@ import Foundation
 
 
 
-struct SearchResult<T: Codable>: Codable
-{
-    var next: String?
-    var previous: String?
-    let results: [T]
-}
-
-
 struct APIClient
 {
     static let root = "https://swapi.dev/"
@@ -66,18 +58,24 @@ struct APIClient
 extension APIClient
 {
     static
-    func fetchResources<T: Codable>(_ urlStrings: [String],
-                                    completion: @escaping (Result<[T], NSError>) -> Void)
+    func fetchResources<T: Codable>(_ urlStrings: [String]?,
+                                    type: T.Type,
+                                    completion: @escaping (([T], [String]) -> Void))
     {
-        var arr: [T] = []
-        var error: NSError?
+        guard let urlStrings = urlStrings else {
+            completion([], [])
+            return
+        }
+        
+        var arrModels: [T] = []
+        var errorUrlStrings: [String] = []
         
         let group = DispatchGroup()
         
         for urlString in urlStrings
         {
             guard let url = URL(string: urlString) else {
-                // TODO: handle invalid URL's
+                errorUrlStrings.append(urlString)
                 continue
             }
             
@@ -86,10 +84,10 @@ extension APIClient
             fetchResouce(url) { (resp: Result<T, NSError>) in
                 switch resp {
                 case .success(let model):
-                    arr.append(model)
+                    arrModels.append(model)
                     
-                case .failure(let err):
-                    error = err
+                case .failure:
+                    errorUrlStrings.append(urlString)
                     break
                 }
                 
@@ -98,14 +96,7 @@ extension APIClient
         }
         
         group.notify(queue: .main) {
-            if let error = error
-            {
-                completion(Result.failure(error))
-            }
-            else
-            {
-                completion(Result.success(arr))
-            }
+            completion(arrModels, errorUrlStrings)
         }
     }
 }

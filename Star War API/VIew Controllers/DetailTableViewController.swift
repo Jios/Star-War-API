@@ -58,109 +58,14 @@ extension DetailTableViewController
 fileprivate
 extension DetailTableViewController
 {
-    func fetch<T: Codable>(_ urlStrings: [String]?,
-                           type: T.Type,
-                           completion: @escaping ([T]) -> Void)
-    {
-        guard let urlStrings = urlStrings else {
-            completion([])
-            return
-        }
-        
-        APIClient.fetchResources(urlStrings,
-                                 completion: { (result: Result<[T], NSError>) in
-                                    
-                                    switch result {
-                                    case .success(let models):
-                                        completion(models)
-
-                                    case .failure(let error):
-                                        self.showAlertView(error.description)
-                                    }
-                                 })
-    }
-    
     func fetchData(_ model: DataModelProtocol)
     {
         showSpinnerViewController(spinnerVC)
         
-        var sections: [SectionData] = []
-        
-        let group = DispatchGroup()
-        
-        
-        group.enter()
-        
-        fetch(model.films,
-              type: Film.self) { (models) in
-            
-            let section = SectionData.section(models, title: "Films")
-            sections.append(section)
-            
-            group.leave()
-        }
-        
-        group.enter()
-        
-        fetch(model.species,
-              type: Species.self) { (models) in
-            
-            let section = SectionData.section(models, title: "Species")
-            sections.append(section)
-            
-            group.leave()
-        }
-        
-        group.enter()
-        
-        fetch(model.starships,
-              type: Starship.self) { (models) in
-            
-            let section = SectionData.section(models, title: "Starships")
-            sections.append(section)
-            
-            group.leave()
-        }
-        
-        group.enter()
-        
-        fetch(model.vehicles,
-              type: Vehicle.self) { (models) in
-            
-            let section = SectionData.section(models, title: "Vehicles")
-            sections.append(section)
-            
-            group.leave()
-        }
-        
-        group.enter()
-        
-        fetch(model.characters,
-              type: People.self) { (models) in
-            
-            let section = SectionData.section(models, title: "Character")
-            sections.append(section)
-            
-            group.leave()
-        }
-        
-        group.enter()
-        
-        fetch(model.planets,
-              type: Planet.self) { (models) in
-            
-            let section = SectionData.section(models, title: "Planets")
-            sections.append(section)
-            
-            group.leave()
-        }
-        
-        
-        
-        group.notify(queue: .global()) {
-            
-            sections = sections.filter { !$0.rows.isEmpty || $0.title == nil }
-            sections.sort(by: { $0.title! < $1.title!})
+        DetailViewModel.fetchAdditionalModels(model) { [weak self] (sections, errorUrls) in
+            guard let self = self else {
+                return
+            }
             
             self.viewModel.sections.append(contentsOf: sections)
             
@@ -168,6 +73,11 @@ extension DetailTableViewController
                 
                 self.hideSpinnerViewController(self.spinnerVC)
                 self.tableView.reloadData()
+                
+                if !errorUrls.isEmpty
+                {
+                    self.showAlertView("Fail to load \(errorUrls.count) resource(s)")
+                }
             }
         }
     }

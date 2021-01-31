@@ -22,6 +22,8 @@
 		911EFD3825BE2BB3009A4BC0 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911EFD3725BE2BB3009A4BC0 /* UIViewController+Extensions.swift */; };
 		911EFD4025BE375A009A4BC0 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911EFD3F25BE375A009A4BC0 /* Date+Extensions.swift */; };
 		911EFD4825BE3ED8009A4BC0 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911EFD4725BE3ED8009A4BC0 /* DetailTableViewController.swift */; };
+		9170EB5E25C744F4002FE5E3 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170EB5D25C744F4002FE5E3 /* SearchResult.swift */; };
+		9170EB6C25C7463E002FE5E3 /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9170EB6B25C7463E002FE5E3 /* SectionData.swift */; };
 		91D1F36625C14F2100281890 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1F36525C14F2100281890 /* Film.swift */; };
 		91D1F36B25C14F4300281890 /* Starship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1F36A25C14F4300281890 /* Starship.swift */; };
 		91D1F37025C14F6000281890 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1F36F25C14F6000281890 /* Vehicle.swift */; };
@@ -30,7 +32,6 @@
 		91D1F37F25C1510000281890 /* DataModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1F37E25C1510000281890 /* DataModelProtocol.swift */; };
 		91D1F38525C1527900281890 /* MasterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1F38425C1527900281890 /* MasterViewModel.swift */; };
 		91D1F38A25C152A600281890 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1F38925C152A600281890 /* DetailViewModel.swift */; };
-		91D1F38F25C152CF00281890 /* SectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1F38E25C152CF00281890 /* SectionDataSource.swift */; };
 		91D1F39425C152E900281890 /* RowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1F39325C152E900281890 /* RowData.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		911EFD3725BE2BB3009A4BC0 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		911EFD3F25BE375A009A4BC0 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		911EFD4725BE3ED8009A4BC0 /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		9170EB5D25C744F4002FE5E3 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		9170EB6B25C7463E002FE5E3 /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
 		91D1F36525C14F2100281890 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		91D1F36A25C14F4300281890 /* Starship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starship.swift; sourceTree = "<group>"; };
 		91D1F36F25C14F6000281890 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
@@ -81,7 +84,6 @@
 		91D1F37E25C1510000281890 /* DataModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelProtocol.swift; sourceTree = "<group>"; };
 		91D1F38425C1527900281890 /* MasterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewModel.swift; sourceTree = "<group>"; };
 		91D1F38925C152A600281890 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
-		91D1F38E25C152CF00281890 /* SectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDataSource.swift; sourceTree = "<group>"; };
 		91D1F39325C152E900281890 /* RowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +181,8 @@
 		911EFD1525BCC977009A4BC0 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				9170EB5D25C744F4002FE5E3 /* SearchResult.swift */,
+				9170EB7325C7467F002FE5E3 /* Detail Models */,
 				91D1F36425C14F0200281890 /* Protocols */,
 				911EFD1625BCC99F009A4BC0 /* People.swift */,
 				91D1F36525C14F2100281890 /* Film.swift */,
@@ -208,6 +212,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9170EB7325C7467F002FE5E3 /* Detail Models */ = {
+			isa = PBXGroup;
+			children = (
+				91D1F39325C152E900281890 /* RowData.swift */,
+				9170EB6B25C7463E002FE5E3 /* SectionData.swift */,
+			);
+			path = "Detail Models";
+			sourceTree = "<group>";
+		};
 		91D1F36425C14F0200281890 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,8 +234,6 @@
 			children = (
 				91D1F38425C1527900281890 /* MasterViewModel.swift */,
 				91D1F38925C152A600281890 /* DetailViewModel.swift */,
-				91D1F39325C152E900281890 /* RowData.swift */,
-				91D1F38E25C152CF00281890 /* SectionDataSource.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -358,9 +369,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				91D1F37025C14F6000281890 /* Vehicle.swift in Sources */,
+				9170EB5E25C744F4002FE5E3 /* SearchResult.swift in Sources */,
 				911EFD1725BCC99F009A4BC0 /* People.swift in Sources */,
 				91D1F39425C152E900281890 /* RowData.swift in Sources */,
-				91D1F38F25C152CF00281890 /* SectionDataSource.swift in Sources */,
 				911EFCE725BCC90E009A4BC0 /* MasterViewController.swift in Sources */,
 				91D1F38525C1527900281890 /* MasterViewModel.swift in Sources */,
 				911EFD2625BD1FCD009A4BC0 /* DateFormatter+Extensions.swift in Sources */,
@@ -369,6 +380,7 @@
 				911EFCE325BCC90E009A4BC0 /* AppDelegate.swift in Sources */,
 				911EFD3825BE2BB3009A4BC0 /* UIViewController+Extensions.swift in Sources */,
 				91D1F37525C14F7B00281890 /* Species.swift in Sources */,
+				9170EB6C25C7463E002FE5E3 /* SectionData.swift in Sources */,
 				91D1F37A25C14F9500281890 /* Planet.swift in Sources */,
 				91D1F36625C14F2100281890 /* Film.swift in Sources */,
 				911EFD4825BE3ED8009A4BC0 /* DetailTableViewController.swift in Sources */,

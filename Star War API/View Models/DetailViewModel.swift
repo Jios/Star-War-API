@@ -47,29 +47,106 @@ struct DetailViewModel
 }
 
 
+// MARK: - # api
+
 extension DetailViewModel
 {
-    func fetchFilms(_ urlStrings: [String],
-                    group: DispatchGroup,
-                    completion: @escaping (Result<SectionData, NSError>) -> Void)
+    static
+    func fetchAdditionalModels(_ model: DataModelProtocol,
+                               completion: @escaping (([SectionData], [String]) -> Void))
     {
+        var sections: [SectionData] = []
+        var errorUrlStrings: [String] = []
+        
+        let group = DispatchGroup()
+        
+        
         group.enter()
         
-        APIClient.fetchResources(urlStrings,
-                                 completion: { (result: Result<[Film], NSError>) in
-                                    
-                                    switch result {
-                                    case .success(let models):
-                                        let section = SectionData.section(models,
-                                                                                title: "Species")
-
-                                        completion(Result.success(section))
-
-                                    case .failure(let error):
-                                        completion(Result.failure(error))
-                                    }
-                                    
-                                    group.leave()
-                                 })
+        APIClient.fetchResources(model.films,
+                                 type: Film.self) { (models, errorUrls) in
+            
+            let section = SectionData.section(models,
+                                              title: "Films")
+            sections.append(section)
+            errorUrlStrings.append(contentsOf: errorUrls)
+            
+            group.leave()
+        }
+        
+        group.enter()
+        
+        APIClient.fetchResources(model.species,
+                                 type: Species.self) { (models, errorUrls) in
+            
+            let section = SectionData.section(models,
+                                              title: "Species")
+            sections.append(section)
+            errorUrlStrings.append(contentsOf: errorUrls)
+            
+            group.leave()
+        }
+        
+        group.enter()
+        
+        APIClient.fetchResources(model.starships,
+                                 type: Starship.self) { (models, errorUrls) in
+            
+            let section = SectionData.section(models,
+                                              title: "Starships")
+            sections.append(section)
+            errorUrlStrings.append(contentsOf: errorUrls)
+            
+            group.leave()
+        }
+        
+        group.enter()
+        
+        APIClient.fetchResources(model.vehicles,
+                                 type: Vehicle.self) { (models, errorUrls) in
+            
+            let section = SectionData.section(models,
+                                              title: "Vehicles")
+            sections.append(section)
+            errorUrlStrings.append(contentsOf: errorUrls)
+            
+            group.leave()
+        }
+        
+        group.enter()
+        
+        APIClient.fetchResources(model.characters,
+                                 type: People.self) { (models, errorUrls) in
+            
+            let section = SectionData.section(models,
+                                              title: "Character")
+            sections.append(section)
+            errorUrlStrings.append(contentsOf: errorUrls)
+            
+            group.leave()
+        }
+        
+        group.enter()
+        
+        APIClient.fetchResources(model.planets,
+                                 type: Planet.self) { (models, errorUrls) in
+            
+            let section = SectionData.section(models,
+                                              title: "Planets")
+            sections.append(section)
+            errorUrlStrings.append(contentsOf: errorUrls)
+            
+            group.leave()
+        }
+        
+        
+        
+        group.notify(queue: .global()) {
+            
+            sections = sections.filter { !$0.rows.isEmpty || $0.title == nil }
+            sections.sort(by: { $0.title! < $1.title!})
+            
+            completion(sections, errorUrlStrings)
+        }
     }
 }
