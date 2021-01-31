@@ -41,6 +41,10 @@ extension MasterViewModel
     var canFetchResults: Bool {
         return (nextUrlString != nil) && !isFetching
     }
+    
+    var numberOfPeople: Int {
+        return arrPeople.count
+    }
 }
 
 
