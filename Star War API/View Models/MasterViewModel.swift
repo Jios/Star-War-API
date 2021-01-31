@@ -5,8 +5,8 @@ import Foundation
 struct MasterViewModel
 {
     private var nextUrlString: String?
+    private var arrPeople: [People] = []
     
-    var characters: [People] = []
     var isFetching = false
     
     var searchTerm: String? {
@@ -19,11 +19,11 @@ struct MasterViewModel
         didSet {
             if response!.previous == nil
             {
-                self.characters = response!.results
+                self.arrPeople = response!.results
             }
             else
             {
-                self.characters.append(contentsOf: response!.results)
+                self.arrPeople.append(contentsOf: response!.results)
             }
             
             nextUrlString = response?.next
@@ -47,26 +47,26 @@ extension MasterViewModel
 extension MasterViewModel
 {
     var numberOfSections: Int {
-        return characters.count > 0 ? 1 : 0
+        return arrPeople.count > 0 ? 1 : 0
     }
     
     func numberOfRows(in section: Int) -> Int
     {
-        return characters.count
+        return arrPeople.count
     }
     
     func title(at indexPath: IndexPath) -> String?
     {
-        return characters[indexPath.row].name
+        return arrPeople[indexPath.row].name
     }
     
     func subtitle(at indexPath: IndexPath) -> String?
     {
-        return characters[indexPath.row].gender
+        return arrPeople[indexPath.row].gender
     }
     
     func character(at indexPath: IndexPath) -> People
     {
-        return characters[indexPath.row]
+        return arrPeople[indexPath.row]
     }
 }
