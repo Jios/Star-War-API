@@ -5,13 +5,13 @@ import Foundation
 struct DetailViewModel
 {
     var model: DataModelProtocol
-    var sections: [SectionDataSource] = []
+    var sections: [SectionData] = []
     
     init(model: DataModelProtocol)
     {
         self.model = model
         
-        var section = SectionDataSource(title: "Resources")
+        var section = SectionData(title: "Resources")
         
         for resouce in self.model.displayResouces
         {
@@ -51,7 +51,7 @@ extension DetailViewModel
 {
     func fetchFilms(_ urlStrings: [String],
                     group: DispatchGroup,
-                    completion: @escaping (Result<SectionDataSource, NSError>) -> Void)
+                    completion: @escaping (Result<SectionData, NSError>) -> Void)
     {
         group.enter()
         
@@ -60,7 +60,7 @@ extension DetailViewModel
                                     
                                     switch result {
                                     case .success(let models):
-                                        let section = SectionDataSource.section(models,
+                                        let section = SectionData.section(models,
                                                                                 title: "Species")
 
                                         completion(Result.success(section))

@@ -143,7 +143,6 @@
 		911EFCE125BCC90E009A4BC0 /* Star War API */ = {
 			isa = PBXGroup;
 			children = (
-				91D1F36425C14F0200281890 /* Protocols */,
 				911EFD2425BD1FB9009A4BC0 /* Extensions */,
 				911EFD1E25BCCAF6009A4BC0 /* Network */,
 				911EFD1525BCC977009A4BC0 /* Data Models */,
@@ -180,6 +179,7 @@
 		911EFD1525BCC977009A4BC0 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				91D1F36425C14F0200281890 /* Protocols */,
 				911EFD1625BCC99F009A4BC0 /* People.swift */,
 				91D1F36525C14F2100281890 /* Film.swift */,
 				91D1F36A25C14F4300281890 /* Starship.swift */,

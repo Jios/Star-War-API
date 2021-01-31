@@ -84,7 +84,7 @@ extension DetailTableViewController
     {
         showSpinnerViewController(spinnerVC)
         
-        var sections: [SectionDataSource] = []
+        var sections: [SectionData] = []
         
         let group = DispatchGroup()
         
@@ -94,7 +94,7 @@ extension DetailTableViewController
         fetch(model.films,
               type: Film.self) { (models) in
             
-            let section = SectionDataSource.section(models, title: "Films")
+            let section = SectionData.section(models, title: "Films")
             sections.append(section)
             
             group.leave()
@@ -105,7 +105,7 @@ extension DetailTableViewController
         fetch(model.species,
               type: Species.self) { (models) in
             
-            let section = SectionDataSource.section(models, title: "Species")
+            let section = SectionData.section(models, title: "Species")
             sections.append(section)
             
             group.leave()
@@ -116,7 +116,7 @@ extension DetailTableViewController
         fetch(model.starships,
               type: Starship.self) { (models) in
             
-            let section = SectionDataSource.section(models, title: "Starships")
+            let section = SectionData.section(models, title: "Starships")
             sections.append(section)
             
             group.leave()
@@ -127,7 +127,7 @@ extension DetailTableViewController
         fetch(model.vehicles,
               type: Vehicle.self) { (models) in
             
-            let section = SectionDataSource.section(models, title: "Vehicles")
+            let section = SectionData.section(models, title: "Vehicles")
             sections.append(section)
             
             group.leave()
@@ -138,7 +138,7 @@ extension DetailTableViewController
         fetch(model.characters,
               type: People.self) { (models) in
             
-            let section = SectionDataSource.section(models, title: "Character")
+            let section = SectionData.section(models, title: "Character")
             sections.append(section)
             
             group.leave()
@@ -149,7 +149,7 @@ extension DetailTableViewController
         fetch(model.planets,
               type: Planet.self) { (models) in
             
-            let section = SectionDataSource.section(models, title: "Planets")
+            let section = SectionData.section(models, title: "Planets")
             sections.append(section)
             
             group.leave()
