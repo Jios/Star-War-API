@@ -16,6 +16,14 @@ class MasterViewController: UIViewController
     
     var viewModel = MasterViewModel()
     
+    lazy var footerLabel: UILabel = {
+        let lb = UILabel()
+        lb.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 46)
+        lb.textAlignment = .center
+        lb.textColor = .systemGray
+        
+        return lb
+    }()
     
     override func viewDidLoad()
     {
@@ -39,7 +47,7 @@ extension MasterViewController
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = self.footerLabel
         
         searchBar.delegate = self
     }
@@ -81,6 +89,19 @@ extension MasterViewController
                 self.viewModel.response = searchResult
                 
                 DispatchQueue.main.async {
+                    
+                    if self.viewModel.numberOfPeople == 0
+                    {
+                        self.footerLabel.text = "No result found"
+                    }
+                    else if self.viewModel.canFetchResults
+                    {
+                        self.footerLabel.text = "Pull up to load more"
+                    }
+                    else
+                    {
+                        self.footerLabel.text = nil
+                    }
                     
                     self.tableView.reloadData()
                 }
