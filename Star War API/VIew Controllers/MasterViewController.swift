@@ -109,7 +109,11 @@ extension MasterViewController
                 }
                 
             case .failure(let error):
-                self.showAlertView(error.description)
+                
+                DispatchQueue.main.async {
+                    
+                    self.showAlertView(error.description)
+                }
             }
         }
     }
