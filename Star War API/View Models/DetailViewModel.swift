@@ -11,7 +11,7 @@ struct DetailViewModel
     {
         self.model = model
         
-        var section = SectionData(title: "Resources")
+        var section = SectionData(title: "Info")
         
         for resouce in self.model.displayResouces
         {
@@ -119,7 +119,7 @@ extension DetailViewModel
                                  type: People.self) { (models, errorUrls) in
             
             let section = SectionData.section(models,
-                                              title: "Character")
+                                              title: "Characters")
             sections.append(section)
             errorUrlStrings.append(contentsOf: errorUrls)
             

@@ -5,6 +5,10 @@
 * target: Star War API
 
 
+## Screenshots
+![search people](screenshots/search_people.png)
+![search people](screenshots/navigating_between_resources.png)
+
 ## Network 
 * APIClient
 
@@ -13,14 +17,14 @@ DataModelProtocol
 
 ## Data Models
 * SearchResult
-* SectionData
-* RowData
-* People
-* Film
-* Species
-* Starship
-* Vehicle
-* Planet
+* SectionData: stores section data in DetailTableViewController
+* RowData: stores row data in DetailTableViewController
+* People (conforms to DataModelProtocol)
+* Film (conforms to DataModelProtocol)
+* Species (conforms to DataModelProtocol)
+* Starship (conforms to DataModelProtocol)
+* Vehicle (conforms to DataModelProtocol)
+* Planet (conforms to DataModelProtocol)
 
 
 ## View Models
@@ -33,23 +37,10 @@ DataModelProtocol
 * SpinnerViewController
 
 ### Master View Controller
-Support displaying and searching people resources
-
-MVVM
-
-view model determines when to refresh master's tableView
-
-
-search filter
-
-search timer to fetch
-
-load more
-
-
+Display people and search people by name
 
 ### Detail View Controller
-Display resource in detail and a list of its associated resources
+Display resource details and additional resources
 
 ### SpinnerViewController
 Display activity indicator in full view

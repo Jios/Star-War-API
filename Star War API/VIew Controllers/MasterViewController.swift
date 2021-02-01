@@ -18,7 +18,9 @@ class MasterViewController: UIViewController
     
     lazy var footerLabel: UILabel = {
         let lb = UILabel()
-        lb.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 46)
+        lb.frame = CGRect(x: 0, y: 0,
+                          width: view.frame.width,
+                          height: 46)
         lb.textAlignment = .center
         lb.textColor = .systemGray
         

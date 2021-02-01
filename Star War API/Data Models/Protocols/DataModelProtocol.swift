@@ -8,10 +8,10 @@ protocol DataModelProtocol
     var name: String? { get }
     var viewTitle: String { get }
     
-    // basic info section
+    // info section
     var displayResouces: [(String, String?)] { get }
     
-    // additional sections
+    // additional resource sections
     var films: [String]? { get }
     var species: [String]? { get }
     var starships: [String]? { get }
@@ -21,10 +21,7 @@ protocol DataModelProtocol
     
     // dates
     var edited: Date? { get }
-    var editedDateString: String? { get }
-    
     var created: Date? { get }
-    var createdDateString: String? { get }
 }
 
 extension DataModelProtocol
@@ -34,16 +31,6 @@ extension DataModelProtocol
         let name = String(describing: thisType)
         
         return name
-    }
-    
-    func additionalResouces() -> [(String, DataModelProtocol.Type, [String]?)]
-    {
-        return[("Films", Film.self, films),
-               ("Species", Species.self, species),
-               ("Starships", Starship.self, starships),
-               ("Vehicles", Vehicle.self, vehicles),
-               ("Poeple", People.self, characters),
-               ("Planets", Planet.self, planets)]
     }
     
     var films: [String]? { return nil }
